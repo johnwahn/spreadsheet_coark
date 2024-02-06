@@ -1,19 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Spreadsheet from './components/Spreadsheet';
+import {View } from 'react-native';
+import Start from './components/Start';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Spreadsheet />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Start />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
