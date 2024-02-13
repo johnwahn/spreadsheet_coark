@@ -1,11 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import {View } from 'react-native';
-import Start from './components/Start';
+import Start from './screens/Start';
+import Spreadsheet from './screens/Spreadsheet';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Start />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Start}/>
+        <Stack.Screen name="Spreadsheet" component={Spreadsheet}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

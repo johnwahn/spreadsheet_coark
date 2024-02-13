@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Button, View, Text, TextInput, StyleSheet } from 'react-native';
+import { Pressable, View, Text, TextInput, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 const Start = () => {
-    const [inputRow, setInputRow] = useState(null)
-    const [inputCol, setInputCol] = useState(null)
+    const [inputRow, setInputRow] = useState('')
+    const [inputCol, setInputCol] = useState('')
+    const navigation = useNavigation();
 
     const createSpreadSheet = () => {
-
+       navigation.navigate('Spreadsheet')
     }
     return(
  <View style={styles.container}>
@@ -16,14 +18,18 @@ const Start = () => {
         <TextInput 
             style={{width: 200, borderWidth: 2, marginRight: 10}} 
             placeholder='Enter Row Size'
+            onChangeText={text => setInputRow(text)}
             value={inputRow}/>
         <Text>Column: </Text>
         <TextInput 
             style={{width: 200, borderWidth: 2, marginRight: 10}} 
             placeholder='Enter Column Size'
+            onChangeText={text => setInputCol(text)}
             value={inputCol}/>
     </View>
-    <Button title="Create Table" onPress={createSpreadSheet}/>
+    <Pressable style = {{borderColor: 'red'}} onPress={createSpreadSheet}>
+        <Text>Create Table</Text>
+    </Pressable>
 
  </View>
  );
