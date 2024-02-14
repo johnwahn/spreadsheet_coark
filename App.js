@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import Start from './screens/Start';
 import Spreadsheet from './screens/Spreadsheet';
 import { NavigationContainer } from '@react-navigation/native';

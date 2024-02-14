@@ -4,28 +4,21 @@ import { useNavigation } from '@react-navigation/native'
 
 const Start = () => {
     const [inputRow, setInputRow] = useState('')
-    const [inputCol, setInputCol] = useState('')
     const navigation = useNavigation();
 
     const createSpreadSheet = () => {
-       navigation.navigate('Spreadsheet')
+       navigation.navigate('Spreadsheet', { numberOfResturants: inputRow})
     }
     return(
  <View style={styles.container}>
-    <Text>Welcome! Choose Your Table Size.</Text>
+    <Text>Welcome!.</Text>
     <View style={styles.inputContainer}>
-        <Text>Row: </Text>
+        <Text>How Many Resturants?: </Text>
         <TextInput 
             style={{width: 200, borderWidth: 2, marginRight: 10}} 
-            placeholder='Enter Row Size'
+            placeholder='Enter number'
             onChangeText={text => setInputRow(text)}
             value={inputRow}/>
-        <Text>Column: </Text>
-        <TextInput 
-            style={{width: 200, borderWidth: 2, marginRight: 10}} 
-            placeholder='Enter Column Size'
-            onChangeText={text => setInputCol(text)}
-            value={inputCol}/>
     </View>
     <Pressable style = {{borderColor: 'red'}} onPress={createSpreadSheet}>
         <Text>Create Table</Text>
