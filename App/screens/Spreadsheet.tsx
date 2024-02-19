@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Table, Row, Rows } from 'react-native-table-component';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import ImageUpload from '../components/ImageUpload';
 
 const Spreadsheet = () => {
   const route = useRoute();
@@ -9,14 +9,27 @@ const Spreadsheet = () => {
   const rows = Array.from(Array(11).keys());
   const columns = Array.from(Array(parseInt(numberOfResturants, 10)).keys());
 
+  const columnHeaderImages = [
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/croffle.png'),
+    require('../Images/menu_image/mad_toast.png'),
+    require('../Images/menu_image/kicnic_time.png'),
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/3456.png'),
+    require('../Images/menu_image/3456.png'),
+  ]
+
   return (
     <View style={styles.container}>
-      
+      <ImageUpload />
       {/* Table Header */}
       <View style={[styles.row, styles.headerRow]}>
         {columns.map((col, index) => (
           <View key={index} style={[styles.cell, styles.headerCell]}>
-            <Text style={styles.cellText}>Column {index + 1}</Text>
+            <Image source={columnHeaderImages[index]} style={styles.cellText} />
           </View>
         ))}
       </View>
