@@ -20,7 +20,7 @@ const Start = () => {
             onChangeText={text => setInputRow(text)}
             value={inputRow}/>
     </View>
-    <Pressable style = {{borderColor: 'red'}} onPress={createSpreadSheet}>
+    <Pressable role = "button" style = {{borderColor: 'red'}} onPress={createSpreadSheet}>
         <Text>Create Table</Text>
     </Pressable>
 

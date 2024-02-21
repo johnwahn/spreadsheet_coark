@@ -9,27 +9,13 @@ const Spreadsheet = () => {
   const rows = Array.from(Array(11).keys());
   const columns = Array.from(Array(parseInt(numberOfResturants, 10)).keys());
 
-  const columnHeaderImages = [
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/croffle.png'),
-    require('../Images/menu_image/mad_toast.png'),
-    require('../Images/menu_image/kicnic_time.png'),
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/3456.png'),
-    require('../Images/menu_image/3456.png'),
-  ]
-
   return (
     <View style={styles.container}>
-      <ImageUpload />
       {/* Table Header */}
       <View style={[styles.row, styles.headerRow]}>
         {columns.map((col, index) => (
           <View key={index} style={[styles.cell, styles.headerCell]}>
-            <Image source={columnHeaderImages[index]} style={styles.cellText} />
+            <ImageUpload />
           </View>
         ))}
       </View>
