@@ -5,7 +5,7 @@ import ImageUpload from '../components/ImageUpload';
 
 const Spreadsheet = () => {
   const route = useRoute();
-  const { numberOfResturants } = route.params;
+  const { numberOfResturants } = route.params as { numberOfResturants: string };
   const rows = Array.from(Array(11).keys());
   const columns = Array.from(Array(parseInt(numberOfResturants, 10)).keys());
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    
   },
   row: {
     flexDirection: 'row',

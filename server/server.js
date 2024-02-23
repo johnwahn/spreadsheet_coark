@@ -4,7 +4,6 @@
     const cors = require('cors')
     const dotenv = require("dotenv")
     const multer = require('multer');
-    const fs = require('fs');
     
     const AWS = require('aws-sdk');
     const s3 = new AWS.S3();
@@ -15,7 +14,14 @@
             cb(null, './uploads');
         },
         filename: function (req, file, cb) {
-            cb(null, file.originalname);
+            // Get the file extension
+        const fileExtension = file.originalname.split('.').pop();
+        
+        // Generate a unique filename with a timestamp
+        const uniqueFilename = `${Date.now()}.${fileExtension}`;
+
+        // Pass the unique filename to the callback
+        cb(null, uniqueFilename);
         },
     })
 

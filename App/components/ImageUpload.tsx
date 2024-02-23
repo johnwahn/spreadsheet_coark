@@ -1,47 +1,44 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
-import ImagePicker, { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary, MediaType } from 'react-native-image-picker';
 
 const ImageUpload = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const options = {
         title: 'Select Image',
-        mediaType: 'photo',
+        mediaType: 'photo' as MediaType,
         selectionLimit: 1,
-        includeBase64: true,
+        includeBase64: false,
     }
 
     const selectImage = async () => {
         const images = await launchImageLibrary(options);
-        const formData = new FormData()
+        const formData = new FormData();
 
-        console.log("images is ", images)
-
-        // Extract base64 data from the image object
-        const base64Data = `data:${images.assets[0].type};base64,${images.assets[0].base64}`;
-
-        // Create a Blob from the base64 data
-        const blob = await (await fetch(base64Data)).blob();
-            
-        formData.append('file', blob, images.assets[0]);
+        console.log("images is ", images.assets[0])
+        const response = await fetch(images.assets[0].uri);
+        const fileBlob = await response.blob();
+        console.log("fileBlob is ", fileBlob);
+        
+        formData.append('file', fileBlob, images.assets[0].fileName);
 
         let res = await fetch(
             'http://localhost:3000/api/uploadImage',
             {
-                method: 'POST',
+                method: 'post',
                 body: formData,
             }
         );
         let responseJson = await res.json();
-
-        console.log(responseJson, "responseJson ");
+        console.log("Image responseJson is ", responseJson);
+        setSelectedImage(responseJson.imageUrl);
     };
   
     return (
       <View style={styles.container}>
         <Pressable onPress={selectImage}>
-          <Text>Select Image</Text>
-          </Pressable>
+          {selectedImage === null && <Text>Select Image</Text>}
+        </Pressable>
         {selectedImage && (
           <Image source={{ uri: selectedImage }} style={styles.image} />
         )}

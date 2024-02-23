@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { Pressable, View, Text, TextInput, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
+interface NavigationParams {
+   numberOfResturants: string;
+}
+
 const Start = () => {
     const [inputRow, setInputRow] = useState('')
     const navigation = useNavigation();
+    
+    const params: NavigationParams = {
+      numberOfResturants: inputRow,
+    };
 
     const createSpreadSheet = () => {
-       navigation.navigate('Spreadsheet', { numberOfResturants: inputRow})
+       navigation.navigate('Spreadsheet', params);
     }
     return(
  <View style={styles.container}>
